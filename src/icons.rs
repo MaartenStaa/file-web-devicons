@@ -22,26 +22,62 @@ impl Icon {
 
 // Source for all the icon definitions below:
 // https://github.com/nvim-tree/nvim-web-devicons/blob/master/lua/nvim-web-devicons.lua
+// Use `scripts/update-icons.sh` to update the icons.
 
+// BEGIN GENERATED CODE
 pub static DEFAULT_ICON: Lazy<Icon> = Lazy::new(|| Icon::new("", "6d8086"));
 
 pub static ICONS_BY_FILENAME: Lazy<Mutex<HashMap<&str, Icon>>> = Lazy::new(|| {
     let mut m = HashMap::new();
+    m.insert(".babelrc", Icon::new("", "cbcb41"));
+    m.insert(".bash_profile", Icon::new("", "89e051"));
+    m.insert(".bashrc", Icon::new("", "89e051"));
+    m.insert(".dockerignore", Icon::new("󰡨", "458ee6"));
+    m.insert(".ds_store", Icon::new("", "41535b"));
     m.insert(".env", Icon::new("", "faf743"));
+    m.insert(".eslintrc", Icon::new("", "4b32c3"));
+    m.insert(".gitattributes", Icon::new("", "41535b"));
+    m.insert(".gitconfig", Icon::new("", "41535b"));
+    m.insert(".gitignore", Icon::new("", "41535b"));
+    m.insert(".gitlab-ci.yml", Icon::new("", "e24329"));
+    m.insert(".gitmodules", Icon::new("", "41535b"));
+    m.insert(".gvimrc", Icon::new("", "019833"));
+    m.insert(".npmignore", Icon::new("", "E8274B"));
+    m.insert(".npmrc", Icon::new("", "E8274B"));
+    m.insert(".settings.json", Icon::new("", "854CC7"));
+    m.insert(".vimrc", Icon::new("", "019833"));
+    m.insert(".zprofile", Icon::new("", "89e051"));
+    m.insert(".zshenv", Icon::new("", "89e051"));
+    m.insert(".zshrc", Icon::new("", "89e051"));
+    m.insert("_gvimrc", Icon::new("", "019833"));
+    m.insert("_vimrc", Icon::new("", "019833"));
+    m.insert("brewfile", Icon::new("", "701516"));
     m.insert("build", Icon::new("", "89e051"));
+    m.insert("cmakelists.txt", Icon::new("", "6d8086"));
+    m.insert("commit_editmsg", Icon::new("", "41535b"));
+    m.insert("containerfile", Icon::new("󰡨", "458ee6"));
+    m.insert("copying", Icon::new("", "cbcb41"));
+    m.insert("copying.lesser", Icon::new("", "cbcb41"));
+    m.insert("docker-compose.yaml", Icon::new("󰡨", "458ee6"));
+    m.insert("docker-compose.yml", Icon::new("󰡨", "458ee6"));
     m.insert("dockerfile", Icon::new("󰡨", "458ee6"));
     m.insert("favicon.ico", Icon::new("", "cbcb41"));
+    m.insert("gemfile$", Icon::new("", "701516"));
     m.insert("gnumakefile", Icon::new("", "6d8086"));
     m.insert("gruntfile", Icon::new("", "e37933"));
     m.insert("gulpfile", Icon::new("", "cc3e44"));
+    m.insert("license", Icon::new("", "d0bf41"));
     m.insert("makefile", Icon::new("", "6d8086"));
     m.insert("mix.lock", Icon::new("", "a074c4"));
     m.insert("node_modules", Icon::new("", "E8274B"));
     m.insert("package-lock.json", Icon::new("", "7a0d21"));
     m.insert("package.json", Icon::new("", "e8274b"));
     m.insert("procfile", Icon::new("", "a074c4"));
+    m.insert("r", Icon::new("󰟔", "358a5b"));
     m.insert("rakefile", Icon::new("", "701516"));
+    m.insert("rmd", Icon::new("", "519aba"));
     m.insert("unlicense", Icon::new("", "d0bf41"));
+    m.insert("vagrantfile$", Icon::new("", "1563FF"));
     m.insert("webpack", Icon::new("󰜫", "519aba"));
     m.insert("workspace", Icon::new("", "89e051"));
     Mutex::new(m)
@@ -49,6 +85,53 @@ pub static ICONS_BY_FILENAME: Lazy<Mutex<HashMap<&str, Icon>>> = Lazy::new(|| {
 
 pub static ICONS_BY_FILE_EXTENSION: Lazy<Mutex<HashMap<&str, Icon>>> = Lazy::new(|| {
     let mut m = HashMap::new();
+    m.insert("ai", Icon::new("", "cbcb41"));
+    m.insert("awk", Icon::new("", "4d5a5e"));
+    m.insert("bash", Icon::new("", "89e051"));
+    m.insert("bat", Icon::new("", "C1F12E"));
+    m.insert("bazel", Icon::new("", "89e051"));
+    m.insert("bmp", Icon::new("", "a074c4"));
+    m.insert("bzl", Icon::new("", "89e051"));
+    m.insert("c", Icon::new("", "599eff"));
+    m.insert("c++", Icon::new("", "f34b7d"));
+    m.insert("cbl", Icon::new("⚙", "005ca5"));
+    m.insert("cc", Icon::new("", "f34b7d"));
+    m.insert("cfg", Icon::new("", "ECECEC"));
+    m.insert("cjs", Icon::new("", "cbcb41"));
+    m.insert("clj", Icon::new("", "8dc149"));
+    m.insert("cljc", Icon::new("", "8dc149"));
+    m.insert("cljd", Icon::new("", "519aba"));
+    m.insert("cljs", Icon::new("", "519aba"));
+    m.insert("cmake", Icon::new("", "6d8086"));
+    m.insert("cob", Icon::new("⚙", "005ca5"));
+    m.insert("cobol", Icon::new("⚙", "005ca5"));
+    m.insert("coffee", Icon::new("", "cbcb41"));
+    m.insert("conf", Icon::new("", "6d8086"));
+    m.insert("config.ru", Icon::new("", "701516"));
+    m.insert("cp", Icon::new("", "519aba"));
+    m.insert("cpp", Icon::new("", "519aba"));
+    m.insert("cpy", Icon::new("⚙", "005ca5"));
+    m.insert("cr", Icon::new("", "c8c8c8"));
+    m.insert("cs", Icon::new("󰌛", "596706"));
+    m.insert("csh", Icon::new("", "4d5a5e"));
+    m.insert("cson", Icon::new("", "cbcb41"));
+    m.insert("css", Icon::new("", "42a5f5"));
+    m.insert("csv", Icon::new("󰈙", "89e051"));
+    m.insert("cxx", Icon::new("", "519aba"));
+    m.insert("d", Icon::new("", "427819"));
+    m.insert("dart", Icon::new("", "03589C"));
+    m.insert("db", Icon::new("", "dad8d8"));
+    m.insert("desktop", Icon::new("", "563d7c"));
+    m.insert("diff", Icon::new("", "41535b"));
+    m.insert("doc", Icon::new("󰈬", "185abd"));
+    m.insert("docx", Icon::new("󰈬", "185abd"));
+    m.insert("drl", Icon::new("", "ffafaf"));
+    m.insert("dropbox", Icon::new("", "0061FE"));
+    m.insert("dump", Icon::new("", "dad8d8"));
+    m.insert("edn", Icon::new("", "519aba"));
+    m.insert("eex", Icon::new("", "a074c4"));
+    m.insert("ejs", Icon::new("", "cbcb41"));
+    m.insert("elm", Icon::new("", "519aba"));
     m.insert("epp", Icon::new("", "FFA61A"));
     m.insert("erb", Icon::new("", "701516"));
     m.insert("erl", Icon::new("", "B83998"));

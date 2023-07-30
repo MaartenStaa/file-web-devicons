@@ -23,7 +23,7 @@ impl Icon {
 // Source for all the icon definitions below:
 // https://github.com/nvim-tree/nvim-web-devicons/blob/master/lua/nvim-web-devicons.lua
 
-pub const DEFAULT_ICON: &str = "";
+pub static DEFAULT_ICON: Lazy<Icon> = Lazy::new(|| Icon::new("", "6d8086"));
 
 // exact match by file name
 pub static ICONS_BY_FILENAME: Lazy<Mutex<HashMap<&str, Icon>>> = Lazy::new(|| {

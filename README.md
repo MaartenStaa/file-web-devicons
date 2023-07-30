@@ -20,6 +20,7 @@ the snapiness of running `fd`/`fzf` directly.
 You could use this project in Neovim using `fzf-lua` as follows:
 
 ```lua
+local fzf = require'fzf-lua'
 local function fzf_files()
   fzf.fzf_exec('fd --type f --strip-cwd-prefix | /path/to/file-web-devicon', {
     actions = fzf.defaults.actions.files,

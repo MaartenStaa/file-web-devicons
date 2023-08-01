@@ -1,5 +1,5 @@
 use once_cell::sync::Lazy;
-use std::{collections::HashMap, sync::Mutex};
+use std::collections::HashMap;
 
 pub struct Icon {
     pub icon: &'static str,
@@ -27,7 +27,7 @@ impl Icon {
 // BEGIN GENERATED CODE
 pub static DEFAULT_ICON: Lazy<Icon> = Lazy::new(|| Icon::new("", "6d8086"));
 
-pub static ICONS_BY_FILENAME: Lazy<Mutex<HashMap<&str, Icon>>> = Lazy::new(|| {
+pub static ICONS_BY_FILENAME: Lazy<HashMap<&str, Icon>> = Lazy::new(|| {
     let mut m = HashMap::new();
     m.insert(".babelrc", Icon::new("", "cbcb41"));
     m.insert(".bash_profile", Icon::new("", "89e051"));
@@ -80,10 +80,10 @@ pub static ICONS_BY_FILENAME: Lazy<Mutex<HashMap<&str, Icon>>> = Lazy::new(|| {
     m.insert("vagrantfile$", Icon::new("", "1563FF"));
     m.insert("webpack", Icon::new("󰜫", "519aba"));
     m.insert("workspace", Icon::new("", "89e051"));
-    Mutex::new(m)
+    m
 });
 
-pub static ICONS_BY_FILE_EXTENSION: Lazy<Mutex<HashMap<&str, Icon>>> = Lazy::new(|| {
+pub static ICONS_BY_FILE_EXTENSION: Lazy<HashMap<&str, Icon>> = Lazy::new(|| {
     let mut m = HashMap::new();
     m.insert("ai", Icon::new("", "cbcb41"));
     m.insert("awk", Icon::new("", "4d5a5e"));
@@ -300,5 +300,5 @@ pub static ICONS_BY_FILE_EXTENSION: Lazy<Mutex<HashMap<&str, Icon>>> = Lazy::new
     m.insert("yml", Icon::new("", "6d8086"));
     m.insert("zig", Icon::new("", "f69a1b"));
     m.insert("zsh", Icon::new("", "89e051"));
-    Mutex::new(m)
+    m
 });

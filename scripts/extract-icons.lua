@@ -27,7 +27,7 @@ for _, map_name in ipairs(maps) do
     assert(icons ~= nil, "icons not found for " .. map_name)
     local upper = map_name:upper()
 
-    print("pub static " .. upper .. ": Lazy<Mutex<HashMap<&str, Icon>>> = Lazy::new(|| {")
+    print("pub static " .. upper .. ": Lazy<HashMap<&str, Icon>> = Lazy::new(|| {")
     print("    let mut m = HashMap::new();")
 
     local inserts = {}
@@ -37,7 +37,7 @@ for _, map_name in ipairs(maps) do
     table.sort(inserts)
     print(table.concat(inserts, "\n"))
 
-    print("  Mutex::new(m)")
+    print("  m")
     print("});")
     print("")
 end

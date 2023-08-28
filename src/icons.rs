@@ -34,6 +34,7 @@ pub static ICONS_BY_FILENAME: Lazy<HashMap<&str, Icon>> = Lazy::new(|| {
     m.insert(".bashrc", Icon::new("", "89e051"));
     m.insert(".dockerignore", Icon::new("󰡨", "458ee6"));
     m.insert(".ds_store", Icon::new("", "41535b"));
+    m.insert(".editorconfig", Icon::new("", "ffffff"));
     m.insert(".env", Icon::new("", "faf743"));
     m.insert(".eslintrc", Icon::new("", "4b32c3"));
     m.insert(".gitattributes", Icon::new("", "41535b"));
@@ -76,6 +77,7 @@ pub static ICONS_BY_FILENAME: Lazy<HashMap<&str, Icon>> = Lazy::new(|| {
     m.insert("r", Icon::new("󰟔", "358a5b"));
     m.insert("rakefile", Icon::new("", "701516"));
     m.insert("rmd", Icon::new("", "519aba"));
+    m.insert("svelte.config.js", Icon::new("", "ff3e00"));
     m.insert("unlicense", Icon::new("", "d0bf41"));
     m.insert("vagrantfile$", Icon::new("", "1563FF"));
     m.insert("webpack", Icon::new("󰜫", "519aba"));
@@ -176,6 +178,7 @@ pub static ICONS_BY_FILE_EXTENSION: Lazy<HashMap<&str, Icon>> = Lazy::new(|| {
     m.insert("js", Icon::new("", "cbcb41"));
     m.insert("json", Icon::new("", "cbcb41"));
     m.insert("json5", Icon::new("", "cbcb41"));
+    m.insert("jsonc", Icon::new("", "cbcb41"));
     m.insert("jsx", Icon::new("", "20c2e3"));
     m.insert("ksh", Icon::new("", "4d5a5e"));
     m.insert("kt", Icon::new("", "7F52FF"));
@@ -286,6 +289,7 @@ pub static ICONS_BY_FILE_EXTENSION: Lazy<HashMap<&str, Icon>> = Lazy::new(|| {
     m.insert("vhd", Icon::new("󰍛", "019833"));
     m.insert("vhdl", Icon::new("󰍛", "019833"));
     m.insert("vim", Icon::new("", "019833"));
+    m.insert("vsh", Icon::new("", "5d87bf"));
     m.insert("vue", Icon::new("", "8dc149"));
     m.insert("wasm", Icon::new("", "5c4cdb"));
     m.insert("webmanifest", Icon::new("", "f1e05a"));

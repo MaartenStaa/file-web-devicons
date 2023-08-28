@@ -27,7 +27,7 @@ impl Icon {
 pub static DEFAULT_ICON: Lazy<Icon> = Lazy::new(|| Icon::new("", 0x6D8086));
 
 pub static ICONS_BY_FILENAME: Lazy<HashMap<&str, Icon>> = Lazy::new(|| {
-    let mut m = HashMap::new();
+    let mut m = HashMap::with_capacity(53);
     m.insert(".babelrc", Icon::new("", 0xCBCB41));
     m.insert(".bash_profile", Icon::new("", 0x89E051));
     m.insert(".bashrc", Icon::new("", 0x89E051));
@@ -85,7 +85,7 @@ pub static ICONS_BY_FILENAME: Lazy<HashMap<&str, Icon>> = Lazy::new(|| {
 });
 
 pub static ICONS_BY_FILE_EXTENSION: Lazy<HashMap<&str, Icon>> = Lazy::new(|| {
-    let mut m = HashMap::new();
+    let mut m = HashMap::with_capacity(217);
     m.insert("ai", Icon::new("", 0xCBCB41));
     m.insert("awk", Icon::new("", 0x4D5A5E));
     m.insert("bash", Icon::new("", 0x89E051));

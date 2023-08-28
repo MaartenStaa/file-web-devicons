@@ -28,13 +28,13 @@ for _, map_name in ipairs(maps) do
     local upper = map_name:upper()
 
     print("pub static " .. upper .. ": Lazy<HashMap<&str, Icon>> = Lazy::new(|| {")
-    print("    let mut m = HashMap::new();")
 
     local inserts = {}
     for k, v in pairs(icons) do
         inserts[#inserts + 1] = "    m.insert(\"" .. k .. "\", Icon::new(\"" .. v.icon .. "\", 0x" .. v.color:upper():sub(2) .. "));"
     end
     table.sort(inserts)
+    print("    let mut m = HashMap::with_capacity(" .. #inserts .. ");")
     print(table.concat(inserts, "\n"))
 
     print("  m")

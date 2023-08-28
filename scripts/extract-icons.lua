@@ -18,7 +18,7 @@ _G.vim = vim
 local web_devicons = dofile()
 
 local default_icon = web_devicons.get_default_icon()
-print("pub static DEFAULT_ICON: Lazy<Icon> = Lazy::new(|| Icon::new(\"" .. default_icon.icon .. "\", \"" .. string.sub(default_icon.color, 2) .. "\"));")
+print("pub static DEFAULT_ICON: Lazy<Icon> = Lazy::new(|| Icon::new(\"" .. default_icon.icon .. "\", 0x" .. default_icon.color:upper():sub(2) .. "));")
 print("")
 
 local maps = { 'icons_by_filename', 'icons_by_file_extension' }
@@ -32,7 +32,7 @@ for _, map_name in ipairs(maps) do
 
     local inserts = {}
     for k, v in pairs(icons) do
-        inserts[#inserts + 1] = "    m.insert(\"" .. k .. "\", Icon::new(\"" .. v.icon .. "\", \"" .. string.sub(v.color, 2) .. "\"));"
+        inserts[#inserts + 1] = "    m.insert(\"" .. k .. "\", Icon::new(\"" .. v.icon .. "\", 0x" .. v.color:upper():sub(2) .. "));"
     end
     table.sort(inserts)
     print(table.concat(inserts, "\n"))

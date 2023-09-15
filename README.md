@@ -5,7 +5,8 @@ in the excellent
 [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons).
 
 Handles color codes as well, using the icon colors from the aforementioned
-library. Intended to take in output from [fd](https://github.com/sharkdp/fd), to
+library. Intended to take in output from [fd](https://github.com/sharkdp/fd) or
+[rg](https://github.com/BurntSushi/ripgrep), to
 then be used as input for [fzf-lua](https://github.com/ibhagwan/fzf-lua) in
 Neovim.
 
@@ -15,7 +16,7 @@ or `fzf` directly would feel much snappier. I concluded (correctly) that this is
 because of the extra processing `fzf-lua` is doing to, amongst other things,
 prepend the file icon. By using a custom `fzf-lua` action that invokes `fd` and
 pipes the results through this binary, you still get the file icons, but with
-the snapiness of running `fd`/`fzf` directly.
+the snapiness of running `fd`/`fzf` directly. Same benefits for `rg` as well.
 
 You could use this project in Neovim using `fzf-lua` as follows:
 
@@ -30,6 +31,18 @@ local function fzf_files()
 end
 
 vim.keymap.set('n', '<C-p>', fzf_files)
+
+local function fzf_live_grep()
+  fzf.fzf_live(
+    'rg --column --line-number --no-heading --color=always --smart-case -- <query> | /path/to/file-web-devicon', {
+    actions = fzf.defaults.actions.files,
+    prompt = 'Rg> ',
+    fzf_opts = { ['--nth'] = 2, ['--delimiter'] = fzf.utils.nbsp },
+    previewer = 'builtin',
+  })
+end
+
+vim.keymap.set('n', '<C-s>', fzf_live_grep)
 ```
 
 _Note_: This project has been tested only on MacOS. I don't know whether it will

@@ -1,5 +1,8 @@
 use std::{collections::HashMap, path::Path};
 
+use filepaths::extract_filepath;
+
+pub(crate) mod filepaths;
 pub(crate) mod icons;
 
 #[derive(Debug, PartialEq)]
@@ -31,7 +34,7 @@ pub fn handle_input_line(line: &str) -> String {
     let non_breaking_space = '\u{2002}';
 
     let filepath = extract_filepath(line);
-    let path = Path::new(&filepath);
+    let path = Path::new(filepath.as_ref());
     let icon = get_icon(
         path,
         &icons::ICONS_BY_FILENAME,
@@ -42,26 +45,6 @@ pub fn handle_input_line(line: &str) -> String {
     let icon = icon.icon;
 
     format!("\x1b[38;2;{r};{g};{b}m{icon}\x1b[0m{non_breaking_space}{line}")
-}
-
-fn extract_filepath(input: &str) -> String {
-    let mut result = String::with_capacity(input.len());
-    let mut in_escape = false;
-
-    for char in input.trim().chars() {
-        match char {
-            '\x1B' if !in_escape => in_escape = true,
-            'm' | 'G' | 'K' if in_escape => in_escape = false,
-            // FIXME: This may break Windows support if the input contains absolute file paths.
-            ':' if !in_escape => break,
-            char if !in_escape => {
-                result.extend(char.to_lowercase());
-            }
-            _ => {}
-        }
-    }
-
-    result
 }
 
 /// Find an appropriate icon in `icons_by_filename` or `icons_by_extension` for

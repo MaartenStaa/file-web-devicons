@@ -58,14 +58,24 @@ pub fn get_icon<'a>(
     default_icon: &'a Icon,
 ) -> &'a Icon {
     if let Some(filename) = path.file_name() {
-        if let Some(icon) = icons_by_filename.get(filename.to_str().unwrap()) {
+        let filename = filename.to_str().unwrap();
+        if let Some(icon) = icons_by_filename.get(filename) {
             return icon;
         }
-    }
 
-    if let Some(extension) = path.extension() {
-        if let Some(icon) = icons_by_extension.get(extension.to_str().unwrap()) {
-            return icon;
+        // NOTE: Manual implementation to find the extension(s), as Rust only
+        // returns the final part, whereas icons by extension also includes e.g.
+        // `.test.tsx`.
+        for dot_index in filename
+            .chars()
+            .enumerate()
+            .filter(|(_, c)| *c == '.')
+            .map(|(i, _)| i)
+        {
+            let extension = &filename[dot_index + 1..];
+            if let Some(icon) = icons_by_extension.get(extension) {
+                return icon;
+            }
         }
     }
 

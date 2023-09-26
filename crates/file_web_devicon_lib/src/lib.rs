@@ -4,6 +4,8 @@ use filepaths::extract_filepath;
 
 pub(crate) mod filepaths;
 pub(crate) mod icons;
+#[cfg(test)]
+mod tests;
 
 #[derive(Debug, PartialEq)]
 pub struct Icon {

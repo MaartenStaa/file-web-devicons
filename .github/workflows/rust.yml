@@ -20,7 +20,7 @@ jobs:
       - name: Run tests
         run: cargo test --verbose
       - name: Run benchmarks
-        run: cargo bench -- --output-format bencher | tee bench-output.txt
+        run: cargo bench -p file_web_devicon_lib -- --output-format bencher | tee bench-output.txt
       - name: Download previous benchmark data
         uses: actions/cache@v1
         with:

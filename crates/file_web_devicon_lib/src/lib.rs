@@ -30,7 +30,7 @@ pub fn handle_input_line(line: &str) -> String {
     // icon and the path as two separate columns.
     let non_breaking_space = '\u{2002}';
 
-    let filepath = extract_filepath(line.as_bytes());
+    let filepath = extract_filepath(line);
     let path = Path::new(&filepath);
     let icon = get_icon(
         path,
@@ -44,23 +44,24 @@ pub fn handle_input_line(line: &str) -> String {
     format!("\x1b[38;2;{r};{g};{b}m{icon}\x1b[0m{non_breaking_space}{line}")
 }
 
-fn extract_filepath(input: &[u8]) -> String {
-    let mut result = Vec::new();
+fn extract_filepath(input: &str) -> String {
+    let mut result = String::with_capacity(input.len());
     let mut in_escape = false;
 
-    for &byte in input.iter() {
-        match byte {
-            b'\x1B' if !in_escape => in_escape = true,
-            b'm' | b'G' | b'K' if in_escape => in_escape = false,
-            b':' if !in_escape => break,
-            byte if !in_escape && !byte.is_ascii_whitespace() => {
-                result.push(byte.to_ascii_lowercase());
+    for char in input.trim().chars() {
+        match char {
+            '\x1B' if !in_escape => in_escape = true,
+            'm' | 'G' | 'K' if in_escape => in_escape = false,
+            // FIXME: This may break Windows support if the input contains absolute file paths.
+            ':' if !in_escape => break,
+            char if !in_escape => {
+                result.extend(char.to_lowercase());
             }
             _ => {}
         }
     }
 
-    String::from_utf8_lossy(&result).to_string()
+    result
 }
 
 /// Find an appropriate icon in `icons_by_filename` or `icons_by_extension` for

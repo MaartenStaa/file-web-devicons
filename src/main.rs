@@ -38,6 +38,25 @@ fn get_icon<'a>(
     )
 }
 
+fn extract_filepath(input: &[u8]) -> String {
+    let mut result = Vec::new();
+    let mut in_escape = false;
+
+    for &byte in input.iter() {
+        match byte {
+            b'\x1B' if !in_escape => in_escape = true,
+            b'm' | b'G' | b'K' if in_escape => in_escape = false,
+            b':' if !in_escape => break,
+            byte if !in_escape && !byte.is_ascii_whitespace() => {
+                result.push(byte.to_ascii_lowercase());
+            }
+            _ => {}
+        }
+    }
+
+    String::from_utf8_lossy(&result).to_string()
+}
+
 fn main() {
     let icons_by_filename = &icons::ICONS_BY_FILENAME;
     let icons_by_extension = &icons::ICONS_BY_FILE_EXTENSION;
@@ -51,8 +70,9 @@ fn main() {
     let input = stdin();
     let mut buffer = String::new();
     while input.read_line(&mut buffer).unwrap() > 0 {
-        let trimmed_lowercase = buffer.trim().to_lowercase();
-        let path = Path::new(&trimmed_lowercase);
+        let filepath = extract_filepath(&buffer.as_bytes());
+        let path = Path::new(&filepath);
+
         let (icon, (r, g, b)) = get_icon(path, icons_by_filename, icons_by_extension, default_icon);
 
         print!("\x1b[38;2;{r};{g};{b}m{icon}\x1b[0m{non_breaking_space}{buffer}");

@@ -3,7 +3,14 @@
 version = 3
 
 [[package]]
-name = "file-web-devicon"
+name = "file_web_devicon"
+version = "0.1.0"
+dependencies = [
+ "file_web_devicon_lib",
+]
+
+[[package]]
+name = "file_web_devicon_lib"
 version = "0.1.0"
 dependencies = [
  "once_cell",

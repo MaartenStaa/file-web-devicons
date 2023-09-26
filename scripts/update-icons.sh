@@ -25,7 +25,7 @@ function main() {
 
     # Replace the generated code in the Rust source file
     local rust_file
-    rust_file="$PROJECT_DIR/src/icons.rs"
+    rust_file="$PROJECT_DIR/crates/file_web_devicon_lib/src/icons.rs"
     local delimiter_pattern
     delimiter_pattern='\/\/ BEGIN GENERATED CODE'
 

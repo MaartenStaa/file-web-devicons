@@ -1,32 +1,15 @@
+use crate::Icon;
 use once_cell::sync::Lazy;
 use std::collections::HashMap;
-
-pub struct Icon {
-    pub icon: &'static str,
-    pub color_red: u8,
-    pub color_green: u8,
-    pub color_blue: u8,
-}
-
-impl Icon {
-    const fn new(icon: &'static str, color: u32) -> Icon {
-        Icon {
-            icon,
-            color_red: ((color >> 16) & 0xFF) as u8,
-            color_green: ((color >> 8) & 0xFF) as u8,
-            color_blue: (color & 0xFF) as u8,
-        }
-    }
-}
 
 // Source for all the icon definitions below:
 // https://github.com/nvim-tree/nvim-web-devicons/blob/master/lua/nvim-web-devicons.lua
 // Use `scripts/update-icons.sh` to update the icons.
 
 // BEGIN GENERATED CODE
-pub static DEFAULT_ICON: Lazy<Icon> = Lazy::new(|| Icon::new("", 0x6D8086));
+pub(crate) static DEFAULT_ICON: Lazy<Icon> = Lazy::new(|| Icon::new("", 0x6D8086));
 
-pub static ICONS_BY_FILENAME: Lazy<HashMap<&str, Icon>> = Lazy::new(|| {
+pub(crate) static ICONS_BY_FILENAME: Lazy<HashMap<&str, Icon>> = Lazy::new(|| {
     let mut m = HashMap::with_capacity(53);
     m.insert(".babelrc", Icon::new("", 0xCBCB41));
     m.insert(".bash_profile", Icon::new("", 0x89E051));
@@ -84,7 +67,7 @@ pub static ICONS_BY_FILENAME: Lazy<HashMap<&str, Icon>> = Lazy::new(|| {
     m
 });
 
-pub static ICONS_BY_FILE_EXTENSION: Lazy<HashMap<&str, Icon>> = Lazy::new(|| {
+pub(crate) static ICONS_BY_FILE_EXTENSION: Lazy<HashMap<&str, Icon>> = Lazy::new(|| {
     let mut m = HashMap::with_capacity(217);
     m.insert("ai", Icon::new("", 0xCBCB41));
     m.insert("awk", Icon::new("", 0x4D5A5E));

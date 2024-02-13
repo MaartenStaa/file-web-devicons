@@ -14,14 +14,17 @@ function main() {
     trap "rm -rf '$tmp'" EXIT
 
     # Download icons, and patch Lua to export them directly
+    mkdir -p "$tmp/nvim-web-devicons"
+    curl -sSL https://raw.githubusercontent.com/nvim-tree/nvim-web-devicons/master/lua/nvim-web-devicons/icons-default.lua > "$tmp/nvim-web-devicons/icons-default.lua"
     curl -sSL https://raw.githubusercontent.com/nvim-tree/nvim-web-devicons/master/lua/nvim-web-devicons.lua | \
-        sed 's/get_icon = get_icon,/get_icon = get_icon,icons_by_filename = icons_by_filename, icons_by_file_extension = icons_by_file_extension,/' > "$tmp/nvim-web-devicons.lua"
+        sed 's/return M/M.icons_by_filename = icons_by_filename;M.icons_by_file_extension = icons_by_file_extension;return M/' > "$tmp/nvim-web-devicons.lua"
 
     # Call our own Lua script to extract the icons, and turn it into Rust code
     local generated_code_file
     generated_code_file="$tmp/generated-code.txt"
-    lua "$SCRIPT_DIR/extract-icons.lua" < "$tmp/nvim-web-devicons.lua" > "$generated_code_file"
-    # echo "$generated_code" > "$generated_code_file"
+    cp "$SCRIPT_DIR/extract-icons.lua" "$tmp/extract-icons.lua"
+    cd "$tmp"
+    lua "extract-icons.lua" > "$generated_code_file"
 
     # Replace the generated code in the Rust source file
     local rust_file
